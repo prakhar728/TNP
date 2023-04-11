@@ -1,0 +1,3 @@
+*.env
+BV-Placed
+node_modules/

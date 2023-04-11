@@ -2,11 +2,20 @@ import React, { useState } from "react";
 import "./style.css";
 import logo from "../../assets/logo.png"
 import loginVector from "../../assets/loginVector.svg";
-import studentLogin from "../../assets/studentLogin.svg"
+import studentLogin from "../../assets/studentLogin.svg";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
-  const [formInputs, setformInputs] = useState({})
+const baseURL = 'http://localhost:8000';
+const navigate = useNavigate();
+  const [formInputs, setformInputs] = useState({
+    smartId:"",
+    password:""
+  })
 
   const handleChange = (e) =>{
+    console.log("changed");
     const name = e.target.name;
     const value = e.target.value;
     setformInputs(prev=>({...prev,[name]:value}))
@@ -15,6 +24,15 @@ const Login = () => {
   const handleSubmit = (e)=>{
     e.preventDefault();
     console.log(formInputs);
+    axios.post(`${baseURL}/api/auth/login`,formInputs)
+    .then(res=>{
+      localStorage.setItem('JWT', res.data.authToken);
+      if(res.data.status)
+      navigate("/home");
+    })
+    .catch(err=>{
+      console.log(err);
+    })
   }
   return (
     <div className="loginWrapper">
@@ -39,13 +57,13 @@ const Login = () => {
           <img src={studentLogin} alt="student Login" />
           <form onSubmit={handleSubmit}>
             <label>
-              College ID:
-              <input type="text" name="collegeId" value={formInputs.collegeid} onChange={handleChange}/>
+            SmartId ID:
+              <input type="text" name="smartId" value={formInputs.smartId} onChange={handleChange}/>
             </label>
 
             <label>
               Password:
-              <input type="password" name="Password" value={formInputs.password} onChange={handleChange}/>
+              <input type="password" name="password" value={formInputs.password} onChange={handleChange}/>
             </label>
 
             <button type="submit">Continue</button>

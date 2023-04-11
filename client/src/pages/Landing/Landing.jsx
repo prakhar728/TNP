@@ -1,18 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
-import logo from "../../assets/logo.png"
-import NotificationBell from "../../assets/NotificationBell.svg"
-import Pfp from "../../assets/Pfp.svg"
-import campusphoto from "../../assets/campusPhoto1.svg"
+import logo from "../../assets/logo.png";
+import NotificationBell from "../../assets/NotificationBell.svg";
+import Pfp from "../../assets/Pfp.svg";
+import campusphoto from "../../assets/campusPhoto1.svg";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import NotAuthorized from "../NotAuthorized/NotAuthorized";
+
 const Landing = () => {
+  const [user, setuser] = useState(null)
+  useEffect(() => {
+    axios.get(`${baseURL}/api/auth/fetchUser`,{
+      headers:{
+        'auth-token':JWT_TOKEN
+      }
+    })
+    .then(res=>{
+      console.log(res.data);
+      setuser(res.data)
+    }).
+    catch(err=>{
+      console.log(err);
+      res.json({err:err})
+    })  
+  }, [])
+  
+const navigate = useNavigate();
+const JWT_TOKEN = localStorage.getItem('JWT');
+const baseURL = 'http://localhost:8000';
+  
+
+  if(user && user.email)
   return (
     <div id="landingPageWrapper">
       <div className="navBar">
         <img src={logo} alt="logo" id="collegLogo"/>
         <nav>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="/Home">Home</a></li>
+            <li><a href="/Dashboard">Dashboard</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Contact</a></li>
@@ -29,7 +56,9 @@ const Landing = () => {
           <h1>Open The Gates To Your Success</h1>
 
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla quos veritatis ipsum architecto ratione omnis, enim, quo repellendus neque tenetur sunt libero officia eaque mollitia repellat. Fuga, minus placeat!Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla quos veritatis ipsum architecto ratione omnis, enim, quo repellendus neque tenetur sunt libero officia eaque mollitia repellat. Fuga, minus placeat!</p>
-          <button>View Dashboard</button>
+          <button onClick={()=>{
+            navigate('/dashboard')
+          }}>View Dashboard</button>
 
           <div id="stats">
             <div>
@@ -49,6 +78,8 @@ const Landing = () => {
       </div>
     </div>
   );
+  return <NotAuthorized />
+
 };
 
 export default Landing;
