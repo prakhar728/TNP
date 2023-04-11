@@ -1,0 +1,25 @@
+#adminWrapper{
+    border:2px solid black;
+    height:100vh;
+}
+#adminHeader{
+    height:10vh;
+    display: flex;
+    justify-content: space-between;
+    border:2px solid black;
+    align-items: center;
+}
+#logoAdmin{
+    height:100%;
+}
+#adminIcons{
+    display: flex;
+    justify-content: flex-end;
+}
+#bell{
+    height:30%;
+    margin-left: 2vw;
+}
+#adminPFP{
+    width:5%;
+}
