@@ -1,6 +1,6 @@
 const { model } = require('mongoose');
 const JobModel = require('../models/JobsModel');
-
+const UserModel = require('../models/UserModel');
 module.exports.addJob = async(req,res,next)=>{
     try{
         const user = req.user;
@@ -57,6 +57,8 @@ module.exports.applyToJob = async(req,res,next)=>{
         if(!jobId)
         return res.status(400).json({error:"Missing Job Id"});
         const job = await JobModel.findById(jobId);
+        if(job.applicants.includes(req.user.id))
+        return res.status(200).json({Message:"User already applied!"})
         job.applicants.push(req.user.id);
         job.save(err=>{
             if(err)
@@ -82,5 +84,28 @@ module.exports.deleteJob = async(req,res,next)=>{
         return res.status(200).json({message:"Removed!"})
     } catch (error) {
         res.status(400).json({error})
+    }
+}
+
+module.exports.viewApplicants = async(req,res)=>{
+    try {
+        const jobid = req.params.id;
+        if(!jobid)
+        return res.status(400).json({error:"Missing Job Id"});
+
+        const job = await JobModel.findById(jobid);
+        if(!job)
+        return res.status(400).json({error:"Job is not present even"})
+        let applicantsTotal = []
+        job.applicants.forEach(async (applicant)=>{
+            console.log(applicant);
+            applicantsTotal.push(await UserModel.findById(applicant))
+            console.log(await UserModel.findById(applicant));
+        })
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        return res.status(200).json(applicantsTotal)
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({error:error})
     }
 }

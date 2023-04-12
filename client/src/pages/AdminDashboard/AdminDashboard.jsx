@@ -8,6 +8,8 @@ import { IconContext } from "react-icons";
 import {RiPagesFill} from "react-icons/ri";
 import {AiFillSetting} from "react-icons/ai";
 import {FiLogOut} from "react-icons/fi";
+import AddJob from '../../components/AddJob/AddJob';
+import ViewJobs from '../../components/ViewJobs/ViewJobs';
 const AdminDashboard = () => {
   return (
     <IconContext.Provider value={{ color: "inherit",size:"42px" }}>
@@ -31,27 +33,8 @@ const AdminDashboard = () => {
                 </div>
             </div>
             <div id="adminRight">
-                <div id="listOfCompanies">
-                    <h1>Current Companies</h1>
-                    <div id="companyNamesList">
-                        <h2>Company Name</h2>
-                    </div>
-                </div>
-                <div id="addCompanyForm">
-                    <form>
-                        <div id="formJTCompanyHolder">
-                        <label>
-                            Job Title
-                            <input placeholder='Enter Job Title' />
-                        </label>
-                        <label>
-                            Company Name
-                            <input placeholder='Enter Company Name' />
-                        </label>
-                        </div>
-                       
-                    </form>
-                </div>
+                <AddJob />
+                <ViewJobs />                
             </div>
         </div>
     </div>
