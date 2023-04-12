@@ -39,7 +39,7 @@ const AdminDashboard = () => {
                 </div>
                 <div id="addCompanyForm">
                     <form>
-                        <div id="formJT&CompanyHolder">
+                        <div id="formJTCompanyHolder">
                         <label>
                             Job Title
                             <input placeholder='Enter Job Title' />

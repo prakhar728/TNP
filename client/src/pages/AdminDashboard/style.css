@@ -88,10 +88,12 @@
 #addCompanyForm{
     border:2px solid black;
     width:50%;
+    border-radius: 20px;
 }
 #formJTCompanyHolder{
     display: flex;
     justify-content: space-evenly;
+
 }
 #formJTCompanyHolder input{
    width:10vw;
