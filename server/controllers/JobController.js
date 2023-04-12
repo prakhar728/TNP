@@ -68,3 +68,19 @@ module.exports.applyToJob = async(req,res,next)=>{
         return res.status(400).json({error:error})
     }
 }
+
+
+module.exports.deleteJob = async(req,res,next)=>{
+    try {
+        const jobid = req.params.id;
+        if(!jobid)
+        return res.status(400).json({error:"Missing Job Id"});
+        const job = await JobModel.findById(jobid);
+        if(!job)
+        return res.status(400).json({error:"Job is not present even"})
+        await JobModel.findByIdAndRemove(jobid);
+        return res.status(200).json({message:"Removed!"})
+    } catch (error) {
+        res.status(400).json({error})
+    }
+}
