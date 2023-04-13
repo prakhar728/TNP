@@ -9,6 +9,7 @@ import {RiPagesFill} from "react-icons/ri";
 import {AiFillSetting} from "react-icons/ai";
 import {FiLogOut} from "react-icons/fi";
 import AddJob from '../../components/AddJob/AddJob';
+import baseURL from '../../Common';
 import ViewJobs from '../../components/ViewJobs/ViewJobs';
 const AdminDashboard = () => {
   return (

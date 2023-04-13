@@ -3,6 +3,7 @@ import "./style.css";
 import BackArrow from "../../assets/BackArrow.svg";
 import bell from "../../assets/bell.svg";
 import axios from 'axios';
+import baseURL from '../../Common';
 const Profile = () => {
   const [file, setfile] = useState(null);
   const [currentFile, setcurrentFile] = useState(null)
@@ -53,7 +54,6 @@ const Profile = () => {
   console.log("hi")
   sendData(formData)
   }
-const baseURL = 'http://localhost:8000';
 
   const sendData = async(formData) => {
     console.log("ss")

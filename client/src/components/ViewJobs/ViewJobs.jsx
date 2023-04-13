@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
+import baseURL from '../../Common';
+
 
 const ViewJobs = () => {
   const [jobs, setJobs] = useState([]);
   const JWT_TOKEN = localStorage.getItem("JWT");
-  const baseURL = "http://localhost:8000";
   const fetchAllJobs = async () =>{
     axios
       .get(`${baseURL}/api/jobs/fetchall`, {

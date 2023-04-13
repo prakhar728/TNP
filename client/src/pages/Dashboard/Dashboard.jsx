@@ -5,13 +5,13 @@ import bell from "../../assets/bell.svg";
 import logo from "../../assets/logodark.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import baseURL from '../../Common';
 import NotAuthorized from "../NotAuthorized/NotAuthorized";
 const Dashboard = () => {
   const [jobs, setJobs] = useState([]);
   const [user, setuser] = useState(null);
   const navigate = useNavigate();
   const JWT_TOKEN = localStorage.getItem("JWT");
-  const baseURL = "http://localhost:8000";
 
   const fetchAllJobs = async () => {
     axios

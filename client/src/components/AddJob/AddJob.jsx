@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import "./style.css"
+import baseURL from '../../Common';
 import axios from 'axios'
 const AddJob = () => {
   const [formInputs, setformInputs] = useState({
@@ -9,7 +10,6 @@ const AddJob = () => {
     Requirements:"",
     Stipend:""
   })
-const baseURL = 'http://localhost:8000';
 const JWT_TOKEN = localStorage.getItem('JWT');
 
   const handleSubmit = async(e) =>{

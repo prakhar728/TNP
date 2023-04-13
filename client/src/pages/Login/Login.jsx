@@ -3,11 +3,11 @@ import "./style.css";
 import logo from "../../assets/logo.png"
 import loginVector from "../../assets/loginVector.svg";
 import studentLogin from "../../assets/studentLogin.svg";
+import baseURL from '../../Common';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-const baseURL = 'http://localhost:8000';
 const navigate = useNavigate();
   const [formInputs, setformInputs] = useState({
     smartId:"",
