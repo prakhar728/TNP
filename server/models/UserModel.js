@@ -37,6 +37,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     min: 8,
   },
+  userType:{
+    type:String,
+    required:true
+  },
   photo:{
     type:String,
   }

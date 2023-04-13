@@ -82,19 +82,18 @@ const Dashboard = () => {
         <div id="dashboardNavigation">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="/dashboard">Dashboard</a>
             </li>
             <li>
-              <a href="#">Resources</a>
+              <a href="/profile">Profile</a>
             </li>
             <li>
-              <a href="#">Profile</a>
+              <a href="/home">Home</a>
             </li>
             <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">Log Out</a>
+              <a onClick={()=>{
+                localStorage.setItem('JWT','');
+              }}>Log Out</a>
             </li>
           </ul>
         </div>

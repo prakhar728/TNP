@@ -24,6 +24,12 @@ const navigate = useNavigate();
   const handleSubmit = (e)=>{
     e.preventDefault();
     console.log(formInputs);
+
+
+    // if(formInputs.smartId.slice(0,5)!="btbti")
+    // return alert("Need a Banasthali Smart Card Id")
+
+
     axios.post(`${baseURL}/api/auth/login`,formInputs)
     .then(res=>{
       localStorage.setItem('JWT', res.data.authToken);
