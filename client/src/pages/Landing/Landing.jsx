@@ -24,7 +24,6 @@ const Landing = () => {
       })
       .catch((err) => {
         console.log(err);
-        res.json({ err: err });
       });
   }, []);
 

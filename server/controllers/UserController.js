@@ -5,12 +5,12 @@ const UserModel = require("../models/UserModel");
 
 module.exports.signup = async (req, res, next) => {
   try {
-    const { name, email,smartId,department,contact,password } = req.body;
-
+    const { name, email,smartId,department,contact,userType } = req.body;
+    const password = smartId;
     const usernameCheck = await User.findOne({ smartId });
 
     if (usernameCheck)
-      return res.json({ msg: "smartId already used", status: false });
+      return res.status(200).json({ msg: "SmartId already used", status: false });
 
     const securePassword = await bcrypt.hash(password, 10); // 10 is the salt
 
@@ -21,6 +21,7 @@ module.exports.signup = async (req, res, next) => {
       department,
       contact,
       password: securePassword,
+      userType
     });
     
     const data = {

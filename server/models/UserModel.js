@@ -6,12 +6,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     min: 3,
     max: 20,
-    unique: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true,
     max: 50,
   },
   smartId: {
@@ -23,7 +21,6 @@ const UserSchema = new mongoose.Schema({
   department: {
     type: String,
     required: true,
-    unique: true,
     max: 50,
   },
   contact: {
