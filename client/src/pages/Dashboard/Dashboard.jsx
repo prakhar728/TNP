@@ -118,7 +118,7 @@ const Dashboard = () => {
               {jobs &&
                 jobs.map((job, index) => {
                   return (
-                    <tr key={index} className="dataHold">
+                    <tr key={index}>
                       <td>{index + 1}.</td>
                       <td>{job.CompanyName}</td>
                       <td>{job.JobTitle}</td>

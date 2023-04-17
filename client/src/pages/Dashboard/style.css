@@ -86,9 +86,13 @@ list-style-type: none;
 #currentOffersList td,th{
     text-align: center;
 }
-.dataHold{
-    border:2px solid black;
+.dataHold tr{
+    border:2px solid black; 
+    display: flex;
+    justify-content: space-evenly;
+    width:100%;
 }
+
 #buttonGroupDashboard{
     display: flex;
     justify-content: space-evenly;
