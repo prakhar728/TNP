@@ -44,7 +44,6 @@ module.exports.signup = async (req, res, next) => {
 module.exports.login = async (req, res, next) => {
     try {
         const { smartId, password } = req.body;
-        console.log(req.body);
         let user = await User.findOne({ smartId });
         if (!user) {
           return res.json({ status:false, msg: "Please login with correct details" });
@@ -74,7 +73,7 @@ module.exports.temp = async (req, res, next) => { // just to demo a controller u
     const smartId = req.user.smartId;
     let {_id,name,email,department,contact} = await User.findOne({ smartId });
     
-    res.json({_id,smartId,name,email,department,contact}); 
+    res.status(200).json({_id,smartId,name,email,department,contact}); 
     // return res.json({ status: true, authToken });
   } catch (ex) {
     // res.status(400).json({err:ex})
@@ -87,7 +86,6 @@ module.exports.updateUser = async(req,res)=>{
     const {contact,address,SmartId,Resume,CGPA} = req.body;
     const user = await UserModel.findById(req.user.id);
     user.contact = contact;
-    console.log(user);
     return res.status(200).json("Updated");
   } catch (error) {
     console.log(error);

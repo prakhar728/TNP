@@ -5,8 +5,8 @@ import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
 import 'react-toastify/dist/ReactToastify.css';
 import ManageResources from "./pages/ManageResources/ManageResources";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-const router = createBrowserRouter([
+import {  createHashRouter, RouterProvider } from "react-router-dom";
+const router = createHashRouter([
   { path: "/", element: <Landing /> },
   {
     path: "/login",

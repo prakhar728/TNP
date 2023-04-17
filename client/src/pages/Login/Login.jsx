@@ -43,10 +43,14 @@ const navigate = useNavigate();
 
   //REACT TOASTS FOR LOGGIN AND VARIANTS
   const alreadyLoggedIn = () =>{
-    toast.info('Already Logged In! Redirecting to Dashboard.')
+    toast.info('Already Logged In! Redirecting to Dashboard.',{
+      onClose:() => navigate('/dashboard')
+    })
   }
   const loginSuccess = () =>{
-    toast.success('Login Succesfull!');
+    toast.success('Login Succesfull!',{
+      onClose:() => navigate('/dashboard')
+    });
   }
   const loginError = () =>{
     toast.error('Error while Trying to log you in!');
@@ -71,9 +75,8 @@ const navigate = useNavigate();
     axios.post(`${baseURL}/api/auth/login`,formInputs)
     .then(res=>{
       localStorage.setItem('JWT', res.data.authToken);
-      loginSuccess();
       if(res.data.status)
-      navigate("/dashboard");
+      loginSuccess();
     })
     .catch(err=>{
       console.log(err);

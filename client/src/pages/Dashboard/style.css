@@ -16,7 +16,8 @@
     align-items: center;
 }
 #DashboardLogo{
-    width:5vw;
+    width:20vw;
+    background-color: white;
 }
 #infoWrapper{
     display: flex;
@@ -79,18 +80,23 @@ list-style-type: none;
     border-radius: 20px;
     padding:2vh 4vw;
     width: 80%;
-    height:70%;
+    max-height:70%;
     font-size: 20px;
     overflow-y: scroll;
 }
 #currentOffersList td,th{
     text-align: center;
+    
+}
+#currentOffersList tr{
+    display: grid;
+    grid-template-columns: 10% 20% auto 30%;
 }
 .dataHold tr{
-    border:2px solid black; 
     display: flex;
     justify-content: space-evenly;
     width:100%;
+   
 }
 
 #buttonGroupDashboard{
@@ -104,4 +110,10 @@ list-style-type: none;
     padding:1vh 1vw;  
     border: none;  
     cursor: pointer;
+}
+#NoJobs{
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    margin: 4vh 0;
 }
