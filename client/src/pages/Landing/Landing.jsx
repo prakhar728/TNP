@@ -3,7 +3,8 @@ import "./style.css";
 import logo from "../../assets/logo.png";
 import NotificationBell from "../../assets/NotificationBell.svg";
 import Pfp from "../../assets/Pfp.svg";
-import campusphoto from "../../assets/campusPhoto1.svg";
+// import campusphoto from "../../assets/campusPhoto1.svg";
+import campusphoto from "../../assets/entry.jpeg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseURL from "../../Common";
@@ -40,8 +41,7 @@ const Landing = () => {
               <a href="/">Home</a>
             </li>
             <li>
-              {!user.email? <a href="/login">Login</a> :  <a href="/#/dashboard">Dashboard</a>}
-             
+              {!user.email? <a href="/#/login">Login</a> :  <a href="/#/dashboard">Dashboard</a>}
             </li>
             <li>
               <a href="#">About Us</a>

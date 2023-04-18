@@ -1,6 +1,6 @@
 import React from 'react'
 import "./style.css";
-import logo from "../../assets/logodark.png";
+import logo from "../../assets/logo.png";
 import configureVector from "../../assets/Configure.svg";
 import { useNavigate } from 'react-router-dom';
 const NotAuthorized = () => {

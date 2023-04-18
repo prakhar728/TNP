@@ -40,6 +40,12 @@ const UserSchema = new mongoose.Schema({
   },
   photo:{
     type:String,
+  },
+  CGPA:{
+    type:String
+  },
+  PassingYear:{
+    type:String
   }
 });
 

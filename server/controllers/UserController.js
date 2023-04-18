@@ -71,9 +71,9 @@ module.exports.login = async (req, res, next) => {
 module.exports.temp = async (req, res, next) => { // just to demo a controller using fetchuser middleware
   try {
     const smartId = req.user.smartId;
-    let {_id,name,email,department,contact} = await User.findOne({ smartId });
+    let {_id,name,email,department,contact,userType} = await User.findOne({ smartId });
     
-    res.status(200).json({_id,smartId,name,email,department,contact}); 
+    res.status(200).json({_id,smartId,name,email,department,contact,userType}); 
     // return res.json({ status: true, authToken });
   } catch (ex) {
     // res.status(400).json({err:ex})
@@ -83,7 +83,7 @@ module.exports.temp = async (req, res, next) => { // just to demo a controller u
 
 module.exports.updateUser = async(req,res)=>{
   try {
-    const {contact,address,SmartId,Resume,CGPA} = req.body;
+    const {contact,email,passingYear,cgpa} = req.body;
     const user = await UserModel.findById(req.user.id);
     user.contact = contact;
     return res.status(200).json("Updated");
