@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
 import baseURL from '../../Common';
-
+import ViewJob from "../ViewJob/ViewJob";
 
 const ViewJobs = () => {
   const [jobs, setJobs] = useState([]);
   const JWT_TOKEN = localStorage.getItem("JWT");
+  const [openJob, setopenJob] = useState(false);
+  const [currentJobViewData, setcurrentJobViewData] = useState({
+    JobTitle:"", JobDescription:"", JobRequirements:"", Stipend:"",
+    CompanyName:""
+  })
   const fetchAllJobs = async () =>{
     axios
       .get(`${baseURL}/api/jobs/fetchall`, {
@@ -16,7 +21,7 @@ const ViewJobs = () => {
       })
       .then((res) => {
         setJobs(res.data);
-        console.log("Recieved");
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -43,6 +48,8 @@ const ViewJobs = () => {
   }
   return (
     <div id="ViewJobWrapper">
+     {(openJob) &&
+      <ViewJob currentJobViewData={currentJobViewData} />}
       <h2>View Jobs</h2>
       {jobs &&
         jobs.map((job, index) => {
@@ -52,7 +59,15 @@ const ViewJobs = () => {
               <div>{job.JobTitle}</div>
               <div>{job.JobDescription}</div>
               <div>{job.Stipend}</div>
-              <button id="RemoveJobButton" name={job._id}onClick={removeJob}>Remove Job</button>
+              <button className="ActionJobButton" name={job._id} onClick={removeJob}>Remove Job</button>
+              <button className="ActionJobButton"  onClick={()=>{
+                setcurrentJobViewData({
+                  JobTitle:job.JobTitle, JobDescription:job.JobDescription, JobRequirements:job.Requirements, Stipend:job.Stipend,
+                  CompanyName:job.CompanyName
+                })
+                setopenJob(true);
+                console.log("Showing Job");
+              }}>View Job</button>
             </div>
           );
         })}

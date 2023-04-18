@@ -86,19 +86,21 @@ list-style-type: none;
 }
 #currentOffersList td,th{
     text-align: center;
-    
+   
 }
 #currentOffersList tr{
     display: grid;
     grid-template-columns: 10% 20% auto 30%;
 }
 .dataHold tr{
+    width:100%;
+   margin:1vh 0;
+}
+.dataHold td{
     display: flex;
     justify-content: space-evenly;
-    width:100%;
-   
+    align-items: center;
 }
-
 #buttonGroupDashboard{
     display: flex;
     justify-content: space-evenly;

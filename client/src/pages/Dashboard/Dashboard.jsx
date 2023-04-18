@@ -10,7 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import NotAuthorized from "../NotAuthorized/NotAuthorized";
 const Dashboard = () => {
   const [jobs, setJobs] = useState([]);
-  const [user, setuser] = useState(null);
+  const [user, setuser] = useState({});
   const JWT_TOKEN = localStorage.getItem("JWT");
   const navigate = useNavigate();
   const fetchAllJobs = async () => {

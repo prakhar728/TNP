@@ -21,7 +21,6 @@ const navigate = useNavigate();
 
   // FETCH THE USER IF JWT ALREADY PRESENT
   useEffect(() => {
-    alreadyLoggedIn();
 
     if(JWT_TOKEN)
     axios

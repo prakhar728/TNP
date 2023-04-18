@@ -71,9 +71,9 @@ module.exports.login = async (req, res, next) => {
 module.exports.temp = async (req, res, next) => { // just to demo a controller using fetchuser middleware
   try {
     const smartId = req.user.smartId;
-    let {_id,name,email,department,contact} = await User.findOne({ smartId });
+    let {_id,name,email,department,contact,userType} = await User.findOne({ smartId });
     
-    res.status(200).json({_id,smartId,name,email,department,contact}); 
+    res.status(200).json({_id,smartId,name,email,department,contact,userType}); 
     // return res.json({ status: true, authToken });
   } catch (ex) {
     // res.status(400).json({err:ex})
