@@ -42,6 +42,7 @@ const Landing = () => {
             </li>
             <li>
               {!user.email? <a href="/#/login">Login</a> :  <a href="/#/dashboard">Dashboard</a>}
+
             </li>
             <li>
               <a href="#">About Us</a>
