@@ -38,7 +38,7 @@ const ViewJob = () => {
         <h2>{jobDetails.CompanyName}</h2>
         </div>
       <div className="jobTitles">
-        <h2>Job Requirements:{jobDetails.JobRequirements}</h2>
+        <h2>Job Requirements:{jobDetails.Requirements}</h2>
         <h2>Stipend:{jobDetails.Stipend}</h2>
       </div>
       <div className="jobTitles">
