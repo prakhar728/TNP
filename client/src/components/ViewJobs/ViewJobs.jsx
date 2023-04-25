@@ -2,16 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
 import baseURL from '../../Common';
-import ViewJob from "../ViewJob/ViewJob";
+import { useNavigate } from "react-router-dom";
 
 const ViewJobs = () => {
   const [jobs, setJobs] = useState([]);
   const JWT_TOKEN = localStorage.getItem("JWT");
-  const [openJob, setopenJob] = useState(false);
-  const [currentJobViewData, setcurrentJobViewData] = useState({
-    JobTitle:"", JobDescription:"", JobRequirements:"", Stipend:"",
-    CompanyName:""
-  })
+ const navigate = useNavigate();
   const fetchAllJobs = async () =>{
     axios
       .get(`${baseURL}/api/jobs/fetchall`, {
@@ -48,8 +44,6 @@ const ViewJobs = () => {
   }
   return (
     <div id="ViewJobWrapper">
-     {(openJob) &&
-      <ViewJob currentJobViewData={currentJobViewData} />}
       <h2>View Jobs</h2>
       {jobs &&
         jobs.map((job, index) => {
@@ -68,6 +62,11 @@ const ViewJobs = () => {
                 setopenJob(true);
                 console.log("Showing Job");
               }}>View Job</button>
+              <button className="ActionJobButton" onClick={()=>{
+                navigate(`/applicants/${job._id}`)
+              }}>
+                View Applicants
+              </button>
             </div>
           );
         })}

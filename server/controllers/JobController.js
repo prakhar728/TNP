@@ -32,7 +32,6 @@ module.exports.addJob = async (req, res, next) => {
 
 module.exports.fetchAllJobs = async (req, res, next) => {
   try {
-    const user = req.user;
 
     const allJobs = await JobModel.find();
 
@@ -44,6 +43,7 @@ module.exports.fetchAllJobs = async (req, res, next) => {
 };
 
 module.exports.fetchAJob = async (req, res, next) => {
+  console.log('fetching job');
   try {
     console.log(req.params);
     if (!req.params.id)
@@ -61,8 +61,9 @@ module.exports.applyToJob = async (req, res, next) => {
   try {
     const jobId = req.params.id;
     console.log(req.user);
-
-    if (req.user.userType != "student")
+    const smartId = req.user.smartId;
+    let {_id,name,email,department,contact,userType} = await UserModel.findOne({ smartId });
+    if (userType != "student")
       return res.status(400).json({ msg: "Only Students can Apply!" });
 
     if (!jobId) return res.status(400).json({ error: "Missing Job Id" });
@@ -87,8 +88,9 @@ module.exports.applyToJob = async (req, res, next) => {
 module.exports.deleteJob = async (req, res, next) => {
   try {
     const jobid = req.params.id;
-
-    if (req.user.userType != "admin")
+    const smartId = req.user.smartId;
+    let {_id,name,email,department,contact,userType} = await UserModel.findOne({ smartId });
+    if (userType != "admin")
       return res.status(400).json({ msg: "Only admin can remove Jobs" });
 
     if (!jobid) return res.status(400).json({ error: "Missing Job Id" });
@@ -105,10 +107,12 @@ module.exports.deleteJob = async (req, res, next) => {
 };
 
 module.exports.viewApplicants = async (req, res) => {
+  console.log('Viewing Applicantss');
   try {
     const jobid = req.params.id;
-    
-    if(req.user.userType!='admin')
+    const smartId = req.user.smartId;
+    let {_id,name,email,department,contact,userType} = await UserModel.findOne({ smartId });
+    if(userType!='admin')
     return res.status(400).json({msg:"Only admin can view applicants"});
 
     if (!jobid) return res.status(400).json({ error: "Missing Job Id" });

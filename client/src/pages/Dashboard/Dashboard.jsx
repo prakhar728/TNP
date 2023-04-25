@@ -9,6 +9,8 @@ import baseURL from "../../Common";
 import { ToastContainer, toast } from 'react-toastify';
 import NotAuthorized from "../NotAuthorized/NotAuthorized";
 const Dashboard = () => {
+
+  
   const [jobs, setJobs] = useState([]);
   const [user, setuser] = useState({});
   const JWT_TOKEN = localStorage.getItem("JWT");
@@ -56,10 +58,7 @@ const Dashboard = () => {
       });
   }, []);
 
-  const viewJob = async (e) => {
-    e.preventDefault();
-    const jobId = e.target.name;
-  };
+ 
   const applyToJob = async (e) => {
     e.preventDefault();
     const jobId = e.target.name;
@@ -71,6 +70,7 @@ const Dashboard = () => {
       })
       .then((res) => {
         console.log(res);
+        toast.success('Successfully Applied to the Job!');
       })
       .catch((err) => {
         console.log(err);
@@ -80,6 +80,7 @@ const Dashboard = () => {
   if (!user) return <NotAuthorized />;
   return (
     <div id="dashboardWrapper">
+      <ToastContainer />
       <div id="sidebar">
         <div id="dashboardlogowrapper">
           <img src={logo} alt="Logo" id="DashboardLogo" />
@@ -131,7 +132,7 @@ const Dashboard = () => {
             <tbody className="dataHold">
               {
                 jobs.length==0?
-              <div id="NoJobs">No Jobs Posted yet!</div>
+              <tr id="NoJobs"><td>No Jobs Posted yet!</td></tr>
               :
               jobs.map((job, index) => {
                 return (
@@ -140,7 +141,11 @@ const Dashboard = () => {
                     <td>{job.CompanyName}</td>
                     <td>{job.JobTitle}</td>
                     <td id="buttonGroupDashboard">
-                      <button name={job._id} onClick={viewJob}>
+                      <button name={job._id} 
+                      onClick={()=>{
+                        navigate(`/jobs/${job._id}`);
+                      }}
+                      >
                         View
                       </button>
                       <button name={job._id} onClick={applyToJob}>
