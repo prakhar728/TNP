@@ -6,7 +6,7 @@ Currently it features:-
 2. Creation, removal and view applicants for a Job.
 3. Applying to a job and view the job as Students.
 4. View and Edit Profile.
-
+    
 ## RUNNING IT LOCALLY
 
 ### PREPARE CLIENT SIDE

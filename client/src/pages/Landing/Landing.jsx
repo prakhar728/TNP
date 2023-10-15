@@ -3,7 +3,7 @@ import "./style.css";
 import logo from "../../assets/logo.png";
 import NotificationBell from "../../assets/NotificationBell.svg";
 import Pfp from "../../assets/Pfp.svg";
-import campusphoto from "../../assets/campusPhoto1.svg";
+import campusphoto from "../../assets/CampusPhoto1.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseURL from "../../Common";

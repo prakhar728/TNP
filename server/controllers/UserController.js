@@ -8,7 +8,7 @@ module.exports.signup = async (req, res, next) => {
     const { name, email,smartId,department,contact,userType } = req.body;
     const password = smartId;
     const usernameCheck = await User.findOne({ smartId });
-
+    console.log(name, email,smartId,department,contact,userType );
     if (usernameCheck)
       return res.status(200).json({ msg: "SmartId already used", status: false });
 
@@ -42,15 +42,17 @@ module.exports.signup = async (req, res, next) => {
 
 
 module.exports.login = async (req, res, next) => {
+  console.log("Starting password");
     try {
         const { smartId, password } = req.body;
+        console.log(smartId,password);
         let user = await User.findOne({ smartId });
         if (!user) {
-          return res.json({ status:false, msg: "Please login with correct details" });
+          return res.json({ status:false, msg: "Please login with correct details smartid" });
         }
         const passwordCompare = await bcrypt.compare(password, user.password);
         if (!passwordCompare) {
-          return res.json({ status:false, msg: "Please login with correct details" });
+          return res.json({ status:false, msg: "Please login with correct details password wrong" });
         }
         const data = {
             user: {
@@ -62,7 +64,7 @@ module.exports.login = async (req, res, next) => {
         const authToken = jwt.sign(data, process.env.JWT_SECRET);
         res.json({ status:true, authToken });
       } catch (error) {
-        console.error(error.message);
+        console.log(error);
         res.json({status:false, msg:"Internal server error occoured"});
       }
 };
@@ -71,7 +73,7 @@ module.exports.login = async (req, res, next) => {
 module.exports.temp = async (req, res, next) => { // just to demo a controller using fetchuser middleware
   try {
     const smartId = req.user.smartId;
-    let {_id,name,email,department,contact,userType} = await User.findOne({ smartId });
+    let {name,email,department,contact,userType} = await User.findOne({ smartId });
     
     res.status(200).json({_id,smartId,name,email,department,contact,userType}); 
     // return res.json({ status: true, authToken });

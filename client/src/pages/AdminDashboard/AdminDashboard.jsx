@@ -30,7 +30,7 @@ const AdminDashboard = () => {
             console.log(err);
           });
       }, []);
-
+  console.log(user.userType);
   if(user.userType!="admin")
   return <div>Only Admins Allowed</div>
   return (

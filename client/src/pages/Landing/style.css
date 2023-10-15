@@ -83,6 +83,12 @@
     justify-content: center;
     align-items: center;
 }
+#rightHalfLanding img{
+    width:50%;
+    height:80%;
+    border:2px solid black;
+    border-radius: 24px;
+}
 #dashboardLoginButton:hover{
     background-color: var(--primary-color);
     color:White;

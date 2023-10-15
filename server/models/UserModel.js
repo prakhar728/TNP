@@ -9,13 +9,11 @@ const UserSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
     max: 50,
   },
   smartId: {
     type: String,
     required: true,
-    unique: true,
     max: 50,
   },
   department: {
@@ -26,7 +24,6 @@ const UserSchema = new mongoose.Schema({
   contact: {
     type: String,
     required: true,
-    unique: true,
     max: 50,
   },
   password: {
@@ -40,6 +37,7 @@ const UserSchema = new mongoose.Schema({
   },
   photo:{
     type:String,
+    default:""
   }
 });
 

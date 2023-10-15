@@ -73,6 +73,7 @@ const navigate = useNavigate();
 
     axios.post(`${baseURL}/api/auth/login`,formInputs)
     .then(res=>{
+      console.log(res);
       localStorage.setItem('JWT', res.data.authToken);
       if(res.data.status)
       loginSuccess();
